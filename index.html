@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sultan AlQahtani | SPICE Activation Engine</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        /* CINEMATIC THEME VARIABLES */
+        :root {
+            --bg-dark: #070707; /* Deep Onyx Black */
+            --bg-card: #141414;
+            --text-main: #EAE6DF; /* Premium Beige */
+            --accent: #C5A059; /* Muted Gold */
+            --accent-dim: rgba(197, 160, 89, 0.2);
+            --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            line-height: 1.1;
+        }
+
+        /* SCROLL REVEAL UTILITY */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: var(--transition);
+        }
+        
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* SECTION STYLING */
+        section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 100px 10%;
+            position: relative;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            background: radial-gradient(circle at center, #1a1a1a 0%, var(--bg-dark) 100%);
+        }
+
+        .hero-subtitle {
+            color: var(--accent);
+            letter-spacing: 4px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            font-size: 14px;
+            text-transform: uppercase;
+        }
+
+        .hero h1 {
+            font-size: clamp(50px, 8vw, 110px);
+            margin-bottom: 40px;
+            text-shadow: 0 10px 30px rgba(0,0,0,0.8);
+        }
+
+        .hero-desc {
+            font-size: 22px;
+            max-width: 800px;
+            color: #A09D96;
+            margin-bottom: 60px;
+            font-weight: 300;
+        }
+
+        /* METRICS */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            border-top: 1px solid #333;
+            padding-top: 50px;
+        }
+
+        .metric {
+            position: relative;
+        }
+
+        .metric::before {
+            content: '';
+            position: absolute;
+            left: -20px;
+            top: 10px;
+            height: 70%;
+            width: 3px;
+            background: var(--accent);
+        }
+
+        .metric-num {
+            font-family: 'Oswald', sans-serif;
+            font-size: 80px;
+            font-weight: 700;
+            color: var(--text-main);
+            display: block;
+        }
+
+        .metric-label {
+            font-size: 16px;
+            color: #888;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        /* PROBLEM SECTION */
+        .problem {
+            background-color: var(--bg-dark);
+        }
+
+        .section-header {
+            font-size: clamp(40px, 6vw, 70px);
+            margin-bottom: 60px;
+            color: var(--text-main);
+        }
+
+        .problem-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        @media (max-width: 900px) {
+            .problem-content { grid-template-columns: 1fr; }
+        }
+
+        .problem-text p {
+            font-size: 22px;
+            margin-bottom: 30px;
+            color: #A09D96;
+            font-weight: 300;
+        }
+
+        .highlight {
+            color: var(--text-main);
+            font-weight: 600;
+            border-bottom: 2px solid var(--accent);
+        }
+
+        /* FRAMEWORK (SIMULATOR) SECTION */
+        .framework {
+            background-color: var(--bg-card);
+            border-radius: 40px;
+            margin: 50px 5%;
+            padding: 100px 5%;
+        }
+
+        .sim-container {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 80px;
+            align-items: center;
+        }
+
+        @media (max-width: 1000px) {
+            .sim-container { grid-template-columns: 1fr; }
+        }
+
+        .sim-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .sim-btn {
+            background: transparent;
+            border: 1px solid #333;
+            padding: 30px;
+            text-align: left;
+            color: #888;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .sim-btn h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: inherit;
+        }
+
+        .sim-btn p {
+            font-size: 16px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .sim-btn:hover {
+            border-color: var(--accent);
+        }
+
+        .sim-btn.active {
+            background: var(--accent-dim);
+            border-color: var(--accent);
+            color: var(--text-main);
+            transform: translateX(15px);
+        }
+
+        .sim-btn.active h3 {
+            color: var(--accent);
+        }
+
+        /* PHONE MOCKUP */
+        .phone-mockup {
+            background: #000;
+            border: 12px solid #222;
+            border-radius: 40px;
+            height: 700px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+
+        .phone-screen {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            padding: 40px 20px;
+            opacity: 0;
+            transform: scale(0.95);
+            transition: var(--transition);
+            pointer-events: none;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .phone-screen.active {
+            opacity: 1;
+            transform: scale(1);
+            pointer-events: auto;
+        }
+
+        /* Screen 1 */
+        #screen-1 { background: linear-gradient(180deg, #111, #000); }
+        .alert-box { background: rgba(255,255,255,0.1); padding: 25px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.2); backdrop-filter: blur(10px); }
+        
+        /* Screen 2 */
+        #screen-2 { background: #E5DDD5; color: #111; justify-content: flex-start; padding-top: 80px;}
+        .wa-msg { background: #fff; padding: 20px; border-radius: 0 20px 20px 20px; text-align: left; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        
+        /* Screen 3 */
+        #screen-3 { background: var(--bg-dark); }
+        .barcode-scan { font-size: 120px; color: var(--accent); margin-bottom: 30px; animation: pulse 2s infinite; }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.7; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        /* VISION SECTION */
+        .vision {
+            background: var(--bg-dark);
+        }
+
+        .vision-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .vision-card {
+            background: var(--bg-card);
+            padding: 50px 40px;
+            border-radius: 20px;
+            border-top: 3px solid transparent;
+            transition: var(--transition);
+        }
+
+        .vision-card:hover {
+            border-top: 3px solid var(--accent);
+            transform: translateY(-10px);
+        }
+
+        .vision-card i {
+            font-size: 40px;
+            color: var(--accent);
+            margin-bottom: 30px;
+        }
+
+        .vision-card h3 {
+            font-size: 26px;
+            margin-bottom: 20px;
+        }
+
+        .vision-card p {
+            color: #A09D96;
+            font-weight: 300;
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 100px 20px;
+            background: var(--bg-card);
+        }
+
+        footer h2 {
+            font-size: clamp(30px, 5vw, 60px);
+            color: var(--accent);
+        }
+
+    </style>
+</head>
+<body>
+
+    <section class="hero">
+        <div class="reveal">
+            <p class="hero-subtitle">The Engine Architecture</p>
+            <h1>How We Hit a 100%<br>Card Activation Rate</h1>
+            <p class="hero-desc">This is the story of a simple lifecycle system built from scratch. The goal wasn’t to spam users with generic emails, but to study consumer behavior, find the exact friction points causing them to hesitate, and fix them.</p>
+            
+            <div class="metrics-grid">
+                <div class="metric">
+                    <span class="metric-num" data-target="100">0</span>
+                    <span class="metric-label">Card Activation Rate</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-num" data-target="-25" data-prefix="-">0</span>
+                    <span class="metric-label">Operational Friction</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-num" data-target="-17" data-prefix="-">0</span>
+                    <span class="metric-label">Merchant Churn</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="problem">
+        <h2 class="section-header reveal">The Reality</h2>
+        <div class="problem-content reveal">
+            <div class="problem-text">
+                <p>At AlaanPay, I noticed a critical gap: users would clear all their onboarding and compliance steps, but <span class="highlight">stop right before making their first transaction</span> with the card.</p>
+                <p>Users are naturally sticky with old habits and get lazy easily. Because there wasn’t a system intercepting them at the right moment, they just reverted to their legacy payment methods.</p>
+                <p>This exact friction is <span class="highlight">identical to what SPICE faces</span> with "at-the-table leakage" where a diner sits down, but instead of opening the app to pay, they reflexively pull out a physical Mada or Apple Pay card and pay via the restaurant's hardware terminal.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="framework">
+        <h2 class="section-header reveal" style="text-align: center;">How I Engineered The Loop</h2>
+        <p class="reveal" style="text-align: center; color: #A09D96; font-size: 20px; max-width: 800px; margin: 0 auto 60px auto;">To get to a 100% activation rate, I didn't blast users with random messages. I split the solution into 3 highly timed touchpoints that bridged digital actions with physical reality.</p>
+        
+        <div class="sim-container reveal">
+            <div class="sim-nav">
+                <button class="sim-btn active" onclick="activateSim(1, this)">
+                    <h3>Step 1: The Digital Fix</h3>
+                    <p>In-App Top-Up Nudge</p>
+                </button>
+                <button class="sim-btn" onclick="activateSim(2, this)">
+                    <h3>Step 2: Contextual Nudge</h3>
+                    <p>Automated WhatsApp Bridge</p>
+                </button>
+                <button class="sim-btn" onclick="activateSim(3, this)">
+                    <h3>Step 3: The Smart Bridge</h3>
+                    <p>Physical-to-Digital Packaging</p>
+                </button>
+            </div>
+
+            <div class="phone-mockup">
+                <div class="phone-screen active" id="screen-1">
+                    <div class="alert-box">
+                        <i class="fa-solid fa-wallet" style="font-size: 40px; color: var(--accent); margin-bottom: 20px;"></i>
+                        <h3 style="margin-bottom: 15px;">Action Required</h3>
+                        <p style="font-size: 14px; color: #ccc;">If left unfunded for >24h, this unmissable prompt captures them when intent is highest.</p>
+                        <button style="margin-top: 20px; width: 100%; padding: 15px; background: var(--text-main); color: var(--bg-dark); border: none; border-radius: 8px; font-weight: bold; cursor: pointer;">Top Up Now</button>
+                    </div>
+                </div>
+                
+                <div class="phone-screen" id="screen-2">
+                    <div style="width: 100%; text-align: center; margin-bottom: 20px; color: #555; font-weight: bold; font-size: 14px;">WhatsApp Business</div>
+                    <div class="wa-msg">
+                        <strong style="color: #075E54; display: block; margin-bottom: 10px;">System Update 🚚</strong>
+                        <p style="font-size: 15px; line-height: 1.4;">Your physical card is Out for Delivery! Activate and fund it in under 60 seconds before it arrives: <br><br><a href="#" style="color: #027EB5;">activate.link/now</a></p>
+                    </div>
+                </div>
+
+                <div class="phone-screen" id="screen-3">
+                    <i class="fa-solid fa-qrcode barcode-scan"></i>
+                    <h3>Smart Barcode</h3>
+                    <p style="color: #888; font-size: 15px; margin-top: 20px; padding: 0 20px;">Scanned during unboxing excitement. Bypasses legacy menus and lands on 1-tap activation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="vision">
+        <h2 class="section-header reveal" style="text-align: center;">Bringing This Architecture to SPICE</h2>
+        <p class="reveal" style="text-align: center; color: #A09D96; font-size: 20px; max-width: 900px; margin: 0 auto 60px auto;">Solving the "at-the-table payment leakage" isn't a marketing problem. It’s a behavioral psychology challenge. Diners need a contextual "nudge" that breaks their muscle memory.</p>
+        
+        <div class="vision-grid reveal">
+            <div class="vision-card">
+                <i class="fa-solid fa-utensils"></i>
+                <h3>1. The Physical Space</h3>
+                <p>Designing smart tabletop visuals and barcodes that make scanning feel easier and more rewarding than reaching for a wallet (just like the smart packaging code).</p>
+            </div>
+            <div class="vision-card">
+                <i class="fa-solid fa-mobile-screen"></i>
+                <h3>2. The Digital Trigger</h3>
+                <p>Setting up geo-triggered, behavior-based in-app nudges the exact moment the waiter prints the check.</p>
+            </div>
+            <div class="vision-card">
+                <i class="fa-solid fa-server"></i>
+                <h3>3. The Infrastructure</h3>
+                <p>Building these automated retention journeys from absolute scratch using Insider, turning SPICE from a one-time trial into an unprompted dining habit.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <h2 class="reveal">READY TO BUILD THE HABIT.</h2>
+        <p class="reveal" style="margin-top: 20px; color: #888; letter-spacing: 2px;">SULTAN ALQAHTANI | CUSTOMER LIFECYCLE MANAGER</p>
+    </footer>
+
+    <script>
+        // --- SCROLL REVEAL LOGIC ---
+        const revealElements = document.querySelectorAll('.reveal');
+        
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.15 });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // --- NUMBER COUNTER LOGIC ---
+        const metrics = document.querySelectorAll('.metric-num');
+        let hasCounted = false;
+
+        const counterObserver = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting && !hasCounted) {
+                hasCounted = true;
+                metrics.forEach(metric => {
+                    const target = +metric.getAttribute('data-target');
+                    const prefix = metric.getAttribute('data-prefix') || '';
+                    const duration = 2000; // 2 seconds
+                    const steps = 60;
+                    const stepValue = target / steps;
+                    let current = 0;
+                    
+                    const interval = setInterval(() => {
+                        current += stepValue;
+                        // Handle positive and negative counting
+                        if ((target > 0 && current >= target) || (target < 0 && current <= target)) {
+                            clearInterval(interval);
+                            metric.innerText = prefix + Math.abs(target) + '%';
+                        } else {
+                            metric.innerText = prefix + Math.abs(Math.floor(current)) + '%';
+                        }
+                    }, duration / steps);
+                });
+            }
+        });
+
+        const metricsSection = document.querySelector('.metrics-grid');
+        if(metricsSection) {
+            counterObserver.observe(metricsSection);
+        }
+
+        // --- SIMULATOR LOGIC ---
+        function activateSim(step, btnElement) {
+            // Reset all buttons and screens
+            document.querySelectorAll('.sim-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.phone-screen').forEach(screen => screen.classList.remove('active'));
+            
+            // Activate selected
+            btnElement.classList.add('active');
+            document.getElementById(`screen-${step}`).classList.add('active');
+        }
+    </script>
+</body>
+</html>
