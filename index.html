@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sultan AlQahtani | The Activation Engine</title>
+    <title>Sultan Falah | The Activation Engine</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
@@ -16,6 +16,7 @@
             --bg-card: #0a0a0a;
             --text-main: #EAE6DF;
             --accent: #C5A059;
+            --accent-glow: rgba(197, 160, 89, 0.3);
             --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
@@ -60,16 +61,30 @@
             transform: translateY(0);
         }
 
+        /* EXPANDED SPACING FOR CINEMATIC FEEL */
         section {
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            padding: 100px 10%;
+            padding: 150px 10%;
             position: relative;
         }
 
+        /* CINEMATIC DIVIDER */
+        .cinematic-divider {
+            width: 2px;
+            height: 150px;
+            background: linear-gradient(to bottom, transparent, var(--accent), transparent);
+            margin: 0 auto;
+            opacity: 0.5;
+        }
+
         /* HERO SECTION */
+        .hero {
+            background: radial-gradient(circle at center 40%, #111, var(--bg-dark) 70%);
+        }
+
         .hero h1 {
             font-size: clamp(40px, 8vw, 100px);
             line-height: 1;
@@ -132,11 +147,12 @@
         }
 
         .text-block p {
-            font-size: 22px;
-            margin-bottom: 30px;
+            font-size: 24px;
+            margin-bottom: 40px;
             color: #999;
             font-weight: 300;
             max-width: 900px;
+            line-height: 1.8;
         }
 
         .text-block span.highlight {
@@ -147,14 +163,22 @@
 
         /* FRAMEWORK ZIG-ZAG SECTION */
         .framework-section {
-            padding: 100px 5%;
+            background-color: #050505;
+            border-radius: 40px;
+            margin: 50px 2%;
+            padding: 150px 5%;
+            box-shadow: inset 0 0 80px rgba(0,0,0,0.8);
         }
 
         .step-row {
             display: flex;
             align-items: center;
-            gap: 80px;
-            margin-bottom: 120px;
+            gap: 100px;
+            margin-bottom: 150px;
+        }
+
+        .step-row:last-child {
+            margin-bottom: 0;
         }
 
         .step-row:nth-child(even) {
@@ -165,39 +189,15 @@
             .step-row, .step-row:nth-child(even) {
                 flex-direction: column;
                 text-align: center;
-                gap: 40px;
+                gap: 50px;
             }
         }
 
-        .step-text {
-            flex: 1;
-        }
-
-        .step-text h2 {
-            font-size: 35px;
-            color: var(--text-main);
-            margin-bottom: 10px;
-        }
-
-        .step-text h3 {
-            font-size: 20px;
-            color: var(--accent);
-            margin-bottom: 25px;
-            letter-spacing: 1px;
-        }
-
-        .step-text p {
-            font-size: 18px;
-            color: #999;
-            line-height: 1.8;
-            font-weight: 300;
-        }
-
-        .step-visual {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-        }
+        .step-text { flex: 1; }
+        .step-text h2 { font-size: 40px; color: var(--text-main); margin-bottom: 10px; }
+        .step-text h3 { font-size: 20px; color: var(--accent); margin-bottom: 30px; letter-spacing: 2px; }
+        .step-text p { font-size: 19px; color: #999; line-height: 1.8; font-weight: 300; }
+        .step-visual { flex: 1; display: flex; justify-content: center; }
 
         /* PHONE MOCKUP */
         .phone {
@@ -208,13 +208,12 @@
             border-radius: 40px;
             position: relative;
             overflow: hidden;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.8);
+            box-shadow: 0 40px 80px rgba(0,0,0,0.9);
             display: flex;
             flex-direction: column;
             justify-content: center;
         }
 
-        /* Screens Styling */
         .screen {
             width: 100%;
             height: 100%;
@@ -236,37 +235,99 @@
         .vision-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            gap: 40px;
         }
 
         .card {
-            background: #0f0f0f;
-            padding: 40px;
-            border-radius: 15px;
+            background: #0a0a0a;
+            padding: 50px 40px;
+            border-radius: 20px;
             border: 1px solid #222;
             transition: var(--transition);
         }
 
         .card:hover {
             border-color: var(--accent);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(197, 160, 89, 0.1);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px var(--accent-glow);
         }
 
-        .card i { font-size: 35px; color: var(--accent); margin-bottom: 25px; }
-        .card h3 { font-size: 24px; margin-bottom: 15px; }
-        .card p { color: #888; font-size: 16px; }
+        .card i { font-size: 40px; color: var(--accent); margin-bottom: 30px; }
+        .card h3 { font-size: 26px; margin-bottom: 20px; }
+        .card p { color: #888; font-size: 17px; }
 
-        footer { text-align: center; padding: 100px 20px; border-top: 1px solid #111; }
+        /* NEW CTA SECTION */
+        .cta-section {
+            text-align: center;
+            padding: 150px 20px;
+            background: radial-gradient(circle at center bottom, #111, var(--bg-dark) 60%);
+            position: relative;
+        }
+
+        .cta-section h2 {
+            font-size: clamp(35px, 6vw, 70px);
+            color: var(--text-main);
+            margin-bottom: 15px;
+        }
+
+        .cta-subtitle {
+            color: #888;
+            font-size: 22px;
+            margin-bottom: 60px;
+            font-weight: 300;
+        }
+
+        .contact-card {
+            display: inline-block;
+            background: #0a0a0a;
+            padding: 50px 80px;
+            border-radius: 20px;
+            border: 1px solid #333;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            transition: var(--transition);
+        }
+
+        .contact-card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 0 60px var(--accent-glow);
+        }
+
+        .contact-name {
+            font-family: 'Oswald', sans-serif;
+            font-size: 30px;
+            color: var(--text-main);
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+        }
+
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            background: var(--accent);
+            color: #000;
+            text-decoration: none;
+            padding: 20px 40px;
+            border-radius: 50px;
+            font-size: 20px;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .cta-btn:hover {
+            background: var(--text-main);
+            transform: scale(1.05);
+        }
+
     </style>
 </head>
 <body>
 
     <section class="hero">
         <div class="reveal active">
-            <p style="color: var(--accent); letter-spacing: 5px; font-weight: 600; margin-bottom: 20px; font-size: 14px;">ALANPAY LIFECYCLE ARCHITECTURE</p>
+            <p style="color: var(--accent); letter-spacing: 5px; font-weight: 600; margin-bottom: 20px; font-size: 14px;">SYSTEM ARCHITECTURE</p>
             <h1 class="typewriter-text">How We Hit a 100%</h1>
-            <h1 style="color: #666; margin-top: -20px;">Activation Rate</h1>
+            <h1 style="color: #444; margin-top: -20px;">Activation Rate</h1>
             
             <p class="hero-desc">This is the story of a simple lifecycle system I built from scratch. The goal wasn't to spam users with generic emails, but to study consumer behavior, find the exact friction points causing them to hesitate, and fix them.</p>
             
@@ -287,6 +348,8 @@
         </div>
     </section>
 
+    <div class="cinematic-divider reveal"></div>
+
     <section>
         <h2 class="section-title reveal">The Reality</h2>
         <div class="text-block reveal">
@@ -296,9 +359,11 @@
         </div>
     </section>
 
-    <section class="framework-section" style="background-color: #080808; border-radius: 40px; margin: 0 2%; box-shadow: inset 0 0 50px rgba(0,0,0,0.5);">
-        <h2 class="section-title reveal" style="text-align: center; margin-bottom: 20px; padding-top: 50px;">The Nudge Framework</h2>
-        <p class="reveal" style="text-align: center; color: #888; max-width: 700px; margin: 0 auto 100px auto; font-size: 18px;">To get to a 100% activation rate, I didn't blast users with random messages. I split the solution into 3 smart, highly timed touchpoints that bridged digital actions with physical reality.</p>
+    <div class="cinematic-divider reveal"></div>
+
+    <section class="framework-section">
+        <h2 class="section-title reveal" style="text-align: center; margin-bottom: 20px;">The Nudge Framework</h2>
+        <p class="reveal" style="text-align: center; color: #888; max-width: 700px; margin: 0 auto 120px auto; font-size: 20px;">To get to a 100% activation rate, I didn't blast users with random messages. I split the solution into 3 smart, highly timed touchpoints.</p>
 
         <div class="step-row reveal">
             <div class="step-text">
@@ -324,7 +389,7 @@
             <div class="step-text">
                 <h2>Step 2: Contextual Nudge</h2>
                 <h3>AUTOMATED WHATSAPP</h3>
-                <p>Solving friction before the product even arrived. We linked our shipping and logistics status to our CRM. The exact minute the physical card went out with the courier (Out for Delivery), an automated WhatsApp message was dispatched to the user with a direct link showing them how to activate and fund the card in under 60 seconds.</p>
+                <p>Solving friction before the product even arrived. We linked our shipping and logistics status to our CRM. The exact minute the physical card went out with the courier, an automated WhatsApp message was dispatched to the user with a direct link showing them how to activate and fund the card in under 60 seconds.</p>
             </div>
             <div class="step-visual">
                 <div class="phone">
@@ -339,7 +404,7 @@
             </div>
         </div>
 
-        <div class="step-row reveal" style="margin-bottom: 50px;">
+        <div class="step-row reveal">
             <div class="step-text">
                 <h2>Step 3: The Smart Bridge</h2>
                 <h3>PHYSICAL-TO-DIGITAL BARCODE</h3>
@@ -357,9 +422,11 @@
         </div>
     </section>
 
+    <div class="cinematic-divider reveal"></div>
+
     <section>
         <h2 class="section-title text-center reveal">Bringing This to SPICE</h2>
-        <p class="reveal" style="color: #999; font-size: 20px; max-width: 900px; margin-bottom: 50px; margin-left: auto; margin-right: auto; text-align: center;">Solving the "at-the-table payment leakage" isn't a marketing problem. It's a behavioral psychology challenge. Diners need a contextual "nudge" that breaks their muscle memory of grabbing a plastic card:</p>
+        <p class="reveal" style="color: #999; font-size: 22px; max-width: 900px; margin-bottom: 80px; margin-left: auto; margin-right: auto; text-align: center;">Solving the "at-the-table payment leakage" isn't a marketing problem. It's a behavioral psychology challenge. Diners need a contextual "nudge" that breaks their muscle memory.</p>
         
         <div class="vision-grid reveal">
             <div class="card">
@@ -380,10 +447,17 @@
         </div>
     </section>
 
-    <footer>
-        <h2 class="reveal" style="color: var(--accent); font-size: clamp(30px, 5vw, 50px);">READY TO ENGINEER THE HABIT.</h2>
-        <p class="reveal" style="margin-top: 20px; color: #666; letter-spacing: 2px;">SULTAN ALQAHTANI | CUSTOMER LIFECYCLE MANAGER</p>
-    </footer>
+    <div class="cta-section">
+        <h2 class="reveal">READY TO ENGINEER THE HABIT?</h2>
+        <p class="cta-subtitle reveal">Let's talk about the future of SPICE.</p>
+        
+        <div class="contact-card reveal">
+            <div class="contact-name">SULTAN FALAH</div>
+            <a href="tel:+966510042583" class="cta-btn">
+                <i class="fa-solid fa-phone"></i> +966 51 004 2583
+            </a>
+        </div>
+    </div>
 
     <script>
         // Scroll Reveal Logic
