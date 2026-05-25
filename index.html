@@ -16,8 +16,7 @@
             --bg-card: #0a0a0a;
             --text-main: #EAE6DF;
             --accent: #C5A059;
-            --accent-dim: rgba(197, 160, 89, 0.1);
-            --transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         * {
@@ -52,7 +51,7 @@
 
         .reveal {
             opacity: 0;
-            transform: translateY(30px);
+            transform: translateY(40px);
             transition: var(--transition);
         }
         
@@ -146,126 +145,93 @@
             padding-bottom: 2px;
         }
 
-        /* SIMULATOR SECTION */
-        .simulator {
-            background-color: var(--bg-card);
-            border-radius: 30px;
-            margin: 50px 0;
-            padding: 80px 5%;
-            box-shadow: inset 0 0 50px rgba(0,0,0,0.5);
+        /* FRAMEWORK ZIG-ZAG SECTION */
+        .framework-section {
+            padding: 100px 5%;
         }
 
-        /* THE CLICK INSTRUCTION (THE MISSING PIECE) */
-        .click-instruction {
+        .step-row {
             display: flex;
             align-items: center;
-            gap: 15px;
-            color: var(--accent);
-            font-weight: 600;
-            font-size: 18px;
-            margin-bottom: 30px;
-            animation: pulse-text 2s infinite;
-        }
-
-        @keyframes pulse-text {
-            0% { opacity: 0.6; transform: translateX(0); }
-            50% { opacity: 1; transform: translateX(10px); }
-            100% { opacity: 0.6; transform: translateX(0); }
-        }
-
-        .sim-grid {
-            display: grid;
-            grid-template-columns: 1fr 400px;
             gap: 80px;
-            align-items: center;
+            margin-bottom: 120px;
         }
 
-        @media (max-width: 1000px) {
-            .sim-grid { grid-template-columns: 1fr; }
+        .step-row:nth-child(even) {
+            flex-direction: row-reverse;
         }
 
-        .nav-buttons {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
+        @media (max-width: 900px) {
+            .step-row, .step-row:nth-child(even) {
+                flex-direction: column;
+                text-align: center;
+                gap: 40px;
+            }
         }
 
-        .sim-btn {
-            background: transparent;
-            border: 1px solid #333;
-            padding: 30px;
-            text-align: left;
-            color: #777;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
+        .step-text {
+            flex: 1;
         }
 
-        .sim-btn::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 4px; height: 100%;
-            background: var(--accent);
-            transform: scaleY(0);
-            transition: var(--transition);
-            transform-origin: bottom;
-        }
-
-        .sim-btn.active::before {
-            transform: scaleY(1);
-        }
-
-        .sim-btn.active {
-            background: var(--accent-dim);
-            border-color: #444;
+        .step-text h2 {
+            font-size: 35px;
             color: var(--text-main);
-            transform: translateX(10px);
+            margin-bottom: 10px;
         }
 
-        .sim-btn h3 { font-size: 22px; margin-bottom: 8px; color: inherit; }
-        .sim-btn p { font-size: 16px; font-family: 'Inter', sans-serif; opacity: 0.8; }
+        .step-text h3 {
+            font-size: 20px;
+            color: var(--accent);
+            margin-bottom: 25px;
+            letter-spacing: 1px;
+        }
+
+        .step-text p {
+            font-size: 18px;
+            color: #999;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+        .step-visual {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
 
         /* PHONE MOCKUP */
         .phone {
+            width: 320px;
+            height: 650px;
             background: #000;
-            border: 14px solid #1a1a1a;
-            border-radius: 45px;
-            height: 720px;
+            border: 12px solid #1a1a1a;
+            border-radius: 40px;
             position: relative;
             overflow: hidden;
             box-shadow: 0 30px 60px rgba(0,0,0,0.8);
-        }
-
-        .screen {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            padding: 40px 20px;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.4s ease;
-            pointer-events: none;
             display: flex;
             flex-direction: column;
             justify-content: center;
         }
 
-        .screen.active {
-            opacity: 1;
-            transform: translateY(0);
-            pointer-events: auto;
+        /* Screens Styling */
+        .screen {
+            width: 100%;
+            height: 100%;
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
-        /* Screens Styling */
         #screen-1 { background: radial-gradient(circle at top, #222, #000); align-items: center; text-align: center; }
-        .nudge-box { background: rgba(255,255,255,0.05); padding: 30px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); width: 90%; }
+        .nudge-box { background: rgba(255,255,255,0.05); padding: 25px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); width: 100%; }
         
-        #screen-2 { background: #E5DDD5; justify-content: flex-start; padding-top: 80px;}
-        .whatsapp-bubble { background: #fff; padding: 20px; border-radius: 0 20px 20px 20px; color: #111; font-size: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        #screen-2 { background: #E5DDD5; justify-content: flex-start; padding-top: 60px;}
+        .whatsapp-bubble { background: #fff; padding: 20px; border-radius: 0 20px 20px 20px; color: #111; font-size: 14px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
         
         #screen-3 { background: var(--bg-dark); align-items: center; text-align: center; }
-        
+
         /* VISION SECTION */
         .vision-grid {
             display: grid;
@@ -330,62 +296,70 @@
         </div>
     </section>
 
-    <section class="simulator reveal">
-        <h2 class="section-title" style="text-align: center; margin-bottom: 20px;">The Nudge Framework</h2>
-        <p style="text-align: center; color: #888; max-width: 700px; margin: 0 auto 60px auto;">To get to a 100% activation rate, I split the solution into 3 smart, highly timed touchpoints that bridged digital actions with physical reality.</p>
-        
-        <div class="sim-grid">
-            <div>
-                <div class="click-instruction">
-                    <i class="fa-solid fa-arrow-pointer"></i> Click the steps below to simulate the solution
-                </div>
+    <section class="framework-section" style="background-color: #080808; border-radius: 40px; margin: 0 2%; box-shadow: inset 0 0 50px rgba(0,0,0,0.5);">
+        <h2 class="section-title reveal" style="text-align: center; margin-bottom: 20px; padding-top: 50px;">The Nudge Framework</h2>
+        <p class="reveal" style="text-align: center; color: #888; max-width: 700px; margin: 0 auto 100px auto; font-size: 18px;">To get to a 100% activation rate, I didn't blast users with random messages. I split the solution into 3 smart, highly timed touchpoints that bridged digital actions with physical reality.</p>
 
-                <div class="nav-buttons">
-                    <div class="sim-btn active" onclick="switchScreen(1, this)">
-                        <h3>Step 1: The Digital Fix</h3>
-                        <p>In-App Top-Up Nudge targeting high intent.</p>
-                    </div>
-                    <div class="sim-btn" onclick="switchScreen(2, this)">
-                        <h3>Step 2: Contextual Nudge</h3>
-                        <p>Automated WhatsApp dispatch on delivery.</p>
-                    </div>
-                    <div class="sim-btn" onclick="switchScreen(3, this)">
-                        <h3>Step 3: The Smart Bridge</h3>
-                        <p>Physical-to-Digital Barcode on packaging.</p>
+        <div class="step-row reveal">
+            <div class="step-text">
+                <h2>Step 1: The Digital Fix</h2>
+                <h3>IN-APP TOP-UP NUDGE</h3>
+                <p>The immediate behavioral correction. I set up a system trigger: if a user passed verification but left their card unfunded for over 24 hours, the next time they opened the platform, an unmissable top-up prompt appeared right on their dashboard. It captured them while their intent and interest were at their peak.</p>
+            </div>
+            <div class="step-visual">
+                <div class="phone">
+                    <div class="screen" id="screen-1">
+                        <div class="nudge-box">
+                            <i class="fa-solid fa-bolt" style="font-size: 30px; color: var(--accent); margin-bottom: 15px;"></i>
+                            <h3 style="margin-bottom: 10px; color: #fff; font-size: 18px;">Unfunded Card Alert</h3>
+                            <p style="font-size: 13px; color: #aaa; margin-bottom: 20px;">Your card is verified but unfunded. Tap here to add funds and start spending instantly.</p>
+                            <div style="background: var(--text-main); color: #000; padding: 12px; border-radius: 8px; font-weight: bold; font-size: 14px;">Top Up Now</div>
+                        </div>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <div class="phone">
-                <div class="screen active" id="screen-1">
-                    <div class="nudge-box">
-                        <i class="fa-solid fa-bolt" style="font-size: 30px; color: var(--accent); margin-bottom: 15px;"></i>
-                        <h3 style="margin-bottom: 10px; color: #fff;">Unfunded Card Alert</h3>
-                        <p style="font-size: 14px; color: #aaa; margin-bottom: 20px;">This unmissable prompt captures the user when they open the app after 24h of inactivity.</p>
-                        <div style="background: var(--text-main); color: #000; padding: 12px; border-radius: 8px; font-weight: bold;">Top Up Now</div>
+        <div class="step-row reveal">
+            <div class="step-text">
+                <h2>Step 2: Contextual Nudge</h2>
+                <h3>AUTOMATED WHATSAPP</h3>
+                <p>Solving friction before the product even arrived. We linked our shipping and logistics status to our CRM. The exact minute the physical card went out with the courier (Out for Delivery), an automated WhatsApp message was dispatched to the user with a direct link showing them how to activate and fund the card in under 60 seconds.</p>
+            </div>
+            <div class="step-visual">
+                <div class="phone">
+                    <div class="screen" id="screen-2">
+                        <div style="text-align: center; margin-bottom: 20px; font-weight: bold; color: #555; font-size: 14px;">WhatsApp Business</div>
+                        <div class="whatsapp-bubble">
+                            <strong style="color: #075E54;">System Automated 🚚</strong>
+                            <p style="margin-top: 10px; line-height: 1.5;">Your physical card is Out for Delivery! <br><br>Activate and fund the card in under 60 seconds before it arrives: <br><span style="color: #027EB5; font-weight: bold;">link.com/activate</span></p>
+                        </div>
                     </div>
                 </div>
+            </div>
+        </div>
 
-                <div class="screen" id="screen-2">
-                    <div style="text-align: center; margin-bottom: 20px; font-weight: bold; color: #555;">WhatsApp Business</div>
-                    <div class="whatsapp-bubble">
-                        <strong style="color: #075E54;">System Automated 🚚</strong>
-                        <p style="margin-top: 10px;">Your physical card is Out for Delivery! We linked shipping status to our CRM to send this. <br><br>Activate and fund the card in under 60 seconds: <span style="color: #027EB5;">link.com/activate</span></p>
+        <div class="step-row reveal" style="margin-bottom: 50px;">
+            <div class="step-text">
+                <h2>Step 3: The Smart Bridge</h2>
+                <h3>PHYSICAL-TO-DIGITAL BARCODE</h3>
+                <p>Leveraging psychological excitement. I worked with the operations team to redesign the physical card box. We embedded a high-visibility Smart Barcode right inside the packaging. When the user opens their new card, they are excited. They scan the code, bypass all legacy app menus, and land directly on the 60-second activation page.</p>
+            </div>
+            <div class="step-visual">
+                <div class="phone">
+                    <div class="screen" id="screen-3">
+                        <i class="fa-solid fa-qrcode" style="font-size: 100px; color: var(--accent); margin-bottom: 30px;"></i>
+                        <h3 style="color: #fff; font-size: 22px;">Smart Barcode</h3>
+                        <p style="color: #888; font-size: 14px; margin-top: 15px; padding: 0 10px;">Scanned during unboxing excitement. Lands directly on 1-tap activation.</p>
                     </div>
-                </div>
-
-                <div class="screen" id="screen-3">
-                    <i class="fa-solid fa-qrcode" style="font-size: 120px; color: var(--accent); margin-bottom: 30px;"></i>
-                    <h3 style="color: #fff;">Smart Barcode</h3>
-                    <p style="color: #888; font-size: 15px; margin-top: 15px; padding: 0 20px;">Embedded right inside the packaging. They scan the code, bypass legacy app menus, and land directly on the activation page.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <section>
-        <h2 class="section-title text-center">Bringing This to SPICE</h2>
-        <p class="reveal" style="color: #999; font-size: 20px; max-width: 900px; margin-bottom: 50px;">Solving the "at-the-table payment leakage" isn't a marketing problem. It's a behavioral psychology challenge. Diners need a contextual "nudge" that breaks their muscle memory of grabbing a plastic card:</p>
+        <h2 class="section-title text-center reveal">Bringing This to SPICE</h2>
+        <p class="reveal" style="color: #999; font-size: 20px; max-width: 900px; margin-bottom: 50px; margin-left: auto; margin-right: auto; text-align: center;">Solving the "at-the-table payment leakage" isn't a marketing problem. It's a behavioral psychology challenge. Diners need a contextual "nudge" that breaks their muscle memory of grabbing a plastic card:</p>
         
         <div class="vision-grid reveal">
             <div class="card">
@@ -407,12 +381,12 @@
     </section>
 
     <footer>
-        <h2 style="color: var(--accent); font-size: clamp(30px, 5vw, 50px);">READY TO ENGINEER THE HABIT.</h2>
-        <p style="margin-top: 20px; color: #666; letter-spacing: 2px;">SULTAN ALQAHTANI | CUSTOMER LIFECYCLE MANAGER</p>
+        <h2 class="reveal" style="color: var(--accent); font-size: clamp(30px, 5vw, 50px);">READY TO ENGINEER THE HABIT.</h2>
+        <p class="reveal" style="margin-top: 20px; color: #666; letter-spacing: 2px;">SULTAN ALQAHTANI | CUSTOMER LIFECYCLE MANAGER</p>
     </footer>
 
     <script>
-        // Scroll Reveal
+        // Scroll Reveal Logic
         const reveals = document.querySelectorAll('.reveal');
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -420,10 +394,10 @@
                     entry.target.classList.add('active');
                 }
             });
-        }, { threshold: 0.1 });
+        }, { threshold: 0.15 });
         reveals.forEach(el => observer.observe(el));
 
-        // Metrics Counter
+        // Live Metrics Counter
         const metrics = document.querySelectorAll('.metric-num');
         let counted = false;
         
@@ -449,15 +423,6 @@
         
         const metricsContainer = document.querySelector('.metrics-container');
         if (metricsContainer) counterObserver.observe(metricsContainer);
-
-        // Simulator Logic
-        function switchScreen(step, btn) {
-            document.querySelectorAll('.sim-btn').forEach(b => b.classList.remove('active'));
-            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-            
-            btn.classList.add('active');
-            document.getElementById(`screen-${step}`).classList.add('active');
-        }
     </script>
 </body>
 </html>
